@@ -280,6 +280,8 @@ class SaleOrderLine(models.Model):
                         'title': _('Not enough inventory!'),
                         'message' : message
                     }
+                    ##Validación para no vender más unidades de las existentes
+                    self.product_uom_qty=product.virtual_available
                     return {'warning': warning_mess}
         return {}
 
