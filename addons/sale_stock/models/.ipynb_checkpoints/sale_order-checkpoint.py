@@ -278,7 +278,7 @@ class SaleOrderLine(models.Model):
                             if quantity > 0:
                                 message += "%s: %s %s\n" % (warehouse.name, quantity, self.product_id.uom_id.name)
                     warning_mess = {
-                        'title': _('Not enough inventory!'),
+                        'title': _('No hay Inventario!'),
                         'message' : message
                     }
                     self.product_uom_qty=product.virtual_available
