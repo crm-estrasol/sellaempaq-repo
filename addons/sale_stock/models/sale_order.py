@@ -266,7 +266,8 @@ class SaleOrderLine(models.Model):
             if float_compare(product.virtual_available, product_qty, precision_digits=precision) == -1:
                 is_available = self._check_routing()
                 if not is_available:
-                    message =  _('You plan to sell %s %s of %s but you only have %s %s available in %s warehouse.') % \
+                    #message =  _('You plan to sell %s %s of %s but you only have %s %s available in %s warehouse.') % \
+                    message =  _('Seleccionaste %s %s de %s , solo existen %s %s disponibles en %s .') % \
                             (self.product_uom_qty, self.product_uom.name, self.product_id.name, product.virtual_available, product.uom_id.name, self.order_id.warehouse_id.name)
                     # We check if some products are available in other warehouses.
                     if float_compare(product.virtual_available, self.product_id.virtual_available, precision_digits=precision) == -1:
@@ -277,7 +278,7 @@ class SaleOrderLine(models.Model):
                             if quantity > 0:
                                 message += "%s: %s %s\n" % (warehouse.name, quantity, self.product_id.uom_id.name)
                     warning_mess = {
-                        'title': _('Not enough inventory!'),
+                        'title': _('No hay Inventario!'),
                         'message' : message
                     }
                     self.product_uom_qty=product.virtual_available
